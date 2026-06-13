@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Premium E-Commerce Platform — LuxeShop
 
-## Getting Started
+A state-of-the-art, single-vendor e-commerce platform built with Next.js, featuring a cinematic video hero, glassmorphism UI, and smooth animations.
 
-First, run the development server:
+## ✨ Features
+- **Cinematic Video Hero** — Full-screen background video with glassmorphism overlays
+- **Premium UI** — Smooth transitions, hover animations, staggered card entries
+- **Authentication** — Email/Password + Google OAuth via NextAuth.js
+- **Shopping Cart** — Client-side cart with localStorage persistence
+- **Responsive** — Works beautifully on desktop, tablet, and mobile
 
+## 🚀 Getting Started
+
+### 1. Install Dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Set up Environment Variables
+Create a `.env` file:
+```env
+DATABASE_URL="file:./dev.db"
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your-secret-key"
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Initialize Database
+```bash
+npx prisma db push
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Run Development Server
+```bash
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Project Structure
+```
+src/
+├── app/              # Next.js App Router pages
+│   ├── api/          # Backend API routes
+│   ├── cart/         # Shopping cart page
+│   ├── login/        # Login page
+│   ├── signup/       # Signup page
+│   └── page.tsx      # Home page
+├── components/       # Reusable UI components
+├── context/          # React Context (Cart)
+└── lib/              # Utilities (Auth, Prisma)
+prisma/               # Database schema
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠 Tech Stack
+- **Next.js 16** — React framework
+- **NextAuth.js** — Authentication
+- **Prisma + SQLite** — Database
+- **Vanilla CSS** — Premium custom styling
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📦 Deployment
+Push to GitHub and connect to [Vercel](https://vercel.com) for instant deployment.

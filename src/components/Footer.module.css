@@ -1,0 +1,73 @@
+.footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  margin-top: 4rem;
+  padding: 3rem 0 1.5rem;
+}
+
+.footerInner {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.logo {
+  font-size: 1.35rem;
+  font-weight: 800;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.03em;
+}
+
+.tagline {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.links {
+  display: flex;
+  gap: 4rem;
+}
+
+.linkGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.linkGroup h4 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.linkGroup a {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  transition: color var(--transition-fast);
+}
+
+.linkGroup a:hover {
+  color: var(--primary);
+}
+
+.bottom {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.bottom p {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}

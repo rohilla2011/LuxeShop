@@ -1,0 +1,228 @@
+.emptyCart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 1rem;
+  text-align: center;
+  gap: 1rem;
+  animation: fadeInUp 0.6s var(--ease-out) both;
+  min-height: 60vh;
+}
+
+.emptyCart h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.emptyCart p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  max-width: 400px;
+}
+
+.lockIcon, .emptyIcon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.signupHint {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.signupHint a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.cartContainer {
+  padding: 2rem 0 4rem;
+  animation: fadeIn 0.5s var(--ease-out) both;
+  min-height: 70vh;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  letter-spacing: -0.03em;
+}
+
+.cartLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .cartLayout {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cartItem {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  align-items: center;
+  background: var(--bg-card);
+  transition: all var(--transition-base);
+  animation: fadeInUp 0.5s var(--ease-out) both;
+}
+
+.cartItem:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-hover);
+}
+
+.itemImage {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.itemImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.cartItem:hover .itemImage img {
+  transform: scale(1.05);
+}
+
+.itemDetails {
+  flex-grow: 1;
+}
+
+.itemDetails h3 {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.itemPrice {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.itemTotal {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.removeBtn {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+}
+
+.removeBtn:hover {
+  background: #fef2f2;
+  color: var(--danger);
+}
+
+.orderSummary {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+  animation: fadeInUp 0.6s var(--ease-out) 0.1s both;
+}
+
+.orderSummary h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.875rem;
+  color: var(--text-secondary);
+  font-size: 0.925rem;
+}
+
+.totalRow {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.checkoutBtn {
+  width: 100%;
+  background: var(--primary-gradient);
+  color: white;
+  padding: 0.9rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-top: 1.5rem;
+  opacity: 0.7;
+  cursor: not-allowed;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+.secureNote {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.loginPrompt {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.loginPrompt a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.btnPrimary {
+  display: inline-block;
+  background: var(--primary-gradient);
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  transition: all var(--transition-base);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+  margin-top: 0.5rem;
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
+}
