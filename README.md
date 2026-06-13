@@ -1,5 +1,7 @@
 # Premium E-Commerce Platform — LuxeShop
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frohilla2011%2FLuxeShop)
+
 A state-of-the-art, single-vendor e-commerce platform built with Next.js, featuring a cinematic video hero, glassmorphism UI, and smooth animations.
 
 ## ✨ Features
