@@ -14,13 +14,26 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
     setLoading(true);
-    
-    // Use redirect: true — NextAuth handles everything
-    await signIn("credentials", {
-      email,
-      password,
-      callbackUrl: "/",
-    });
+
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        // NextAuth passes the error message from authorize() throw
+        setError(result.error);
+        setLoading(false);
+      } else if (result?.ok) {
+        // Successful login — redirect to home
+        window.location.href = "/";
+      }
+    } catch {
+      setError("Something went wrong. Please try again.");
+      setLoading(false);
+    }
   };
 
   return (

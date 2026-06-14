@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
+import { Toaster } from 'react-hot-toast';
 import "./globals.css";
 import Providers from "@/components/Providers";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Chatbot from "@/components/Chatbot";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
   title: "LuxeShop — Premium E-Commerce",
@@ -19,13 +21,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.variable}>
+      <body className={outfit.className}>
         <Providers>
           <Navbar />
           <main className="container" style={{ padding: '1rem 1.5rem' }}>
             {children}
           </main>
           <Footer />
+          <Chatbot />
         </Providers>
       </body>
     </html>

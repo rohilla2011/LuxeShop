@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  background: linear-gradient(135deg, #f8faff 0%, #f0f0ff 30%, #faf5ff 60%, #f5faff 100%);
+  background: var(--bg-primary);
   position: relative;
   overflow: hidden;
 }
@@ -14,7 +14,7 @@
   position: absolute;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(251, 168, 230, 0.1) 0%, transparent 70%);
   top: -100px;
   right: -100px;
   border-radius: 50%;
@@ -25,7 +25,7 @@
   position: absolute;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(106, 220, 249, 0.1) 0%, transparent 70%);
   bottom: -80px;
   left: -80px;
   border-radius: 50%;
@@ -37,10 +37,8 @@
   padding: 2.5rem;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   position: relative;
   z-index: 1;
   animation: scaleIn 0.5s var(--ease-out) both;
@@ -83,7 +81,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  background: white;
+  background: var(--bg-primary);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   padding: 0.8rem;
@@ -96,6 +94,7 @@
 }
 
 .googleBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
   border-color: var(--border-hover);
   box-shadow: var(--shadow-md);
   transform: translateY(-1px);
@@ -128,74 +127,13 @@
   font-weight: 500;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+.formGroup {
+  margin-bottom: 1.5rem;
 }
 
-.inputGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.inputGroup label {
-  font-size: 0.825rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: 0.01em;
-}
-
-.inputGroup input {
-  padding: 0.75rem 1rem;
-  border: 1.5px solid var(--border-color);
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.8);
-  color: var(--text-primary);
-  font-size: 0.925rem;
-  transition: all var(--transition-base);
-}
-
-.inputGroup input::placeholder {
-  color: var(--text-muted);
-}
-
-.inputGroup input:hover {
-  border-color: var(--border-hover);
-}
-
-.inputGroup input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-glow);
-}
-
-.submitBtn {
-  background: var(--primary-gradient);
-  color: white;
-  padding: 0.85rem;
-  border-radius: var(--radius-lg);
-  font-weight: 600;
+.formGroup label {
+  display: block;
   font-size: 0.95rem;
-  margin-top: 0.5rem;
-  transition: all var(--transition-base);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
-  position: relative;
-  overflow: hidden;
-}
-
-.submitBtn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-  transition: left 0.6s ease;
-}
-
-.submitBtn:hover::before {
   left: 100%;
 }
 
@@ -223,4 +161,142 @@
 
 .switchLink a:hover {
   color: var(--primary-dark);
+}
+
+/* ======= OTP Verification Styles ======= */
+
+.otpSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: slideUp 0.4s var(--ease-out) both;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.otpEmailBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(129, 140, 248, 0.1);
+  color: var(--primary-light);
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-size: 0.825rem;
+  font-weight: 500;
+  border: 1px solid rgba(129, 140, 248, 0.2);
+}
+
+.otpInputs {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.otpInput {
+  width: 48px;
+  height: 56px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  caret-color: var(--primary-light);
+}
+
+.otpInput:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+  background: var(--bg-primary);
+}
+
+.otpInputFilled {
+  border-color: var(--primary-light);
+  background: rgba(129, 140, 248, 0.1);
+}
+
+.otpFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.otpBackBtn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease;
+}
+
+.otpBackBtn:hover {
+  color: var(--text-primary);
+}
+
+.otpResendBtn {
+  background: none;
+  border: none;
+  color: #6366f1;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  transition: opacity 0.2s ease;
+}
+
+.otpResendBtn:disabled {
+  color: var(--text-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.otpResendBtn:not(:disabled):hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 2rem;
+  }
+  .title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1.5rem;
+    border-width: 3px;
+    box-shadow: 6px 6px 0px var(--border-color);
+  }
+  .title {
+    font-size: 1.8rem;
+  }
+  .otpInput {
+    width: 42px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+
+  .otpInputs {
+    gap: 0.35rem;
+  }
 }

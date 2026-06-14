@@ -1,106 +1,97 @@
 .card {
+  position: relative;
   background: var(--bg-card);
-  border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: all var(--transition-slow);
-  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  animation: fadeInUp 0.6s var(--ease-out) both;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
 }
 
 .card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-card-hover);
-  border-color: var(--border-hover);
 }
 
 .imageContainer {
-  width: 100%;
-  height: 260px;
-  overflow: hidden;
   position: relative;
-}
-
-.imageContainer::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: linear-gradient(to top, var(--bg-card), transparent);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity var(--transition-base);
-}
-
-.card:hover .imageContainer::after {
-  opacity: 1;
+  width: 100%;
+  height: 280px;
+  background: var(--bg-secondary);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
 }
 
 .image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s var(--ease-out);
+  object-fit: contain;
+  transition: transform var(--transition-slow);
+  padding: 1rem;
 }
 
 .card:hover .image {
   transform: scale(1.08);
 }
 
-.content {
-  padding: 1.25rem 1.5rem 1.5rem;
+.badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--primary);
+  color: #111;
+  padding: 0.35rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  z-index: 2;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+}
+
+.info {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  gap: 0.5rem;
+  flex: 1;
 }
 
-.title {
-  font-size: 1.1rem;
-  font-weight: 650;
-  letter-spacing: -0.02em;
-  line-height: 1.3;
+.category {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
 }
 
-.description {
-  color: var(--text-secondary);
-  font-size: 0.875rem;
-  line-height: 1.5;
-  flex-grow: 1;
+.name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
 }
 
-.footer {
+.priceRow {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-top: 0.75rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-color);
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1.5rem;
 }
 
 .price {
-  font-size: 1.3rem;
-  font-weight: 700;
-  background: var(--primary-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text-highlight);
 }
 
 .addBtn {
-  background: var(--primary);
-  color: white;
-  padding: 0.55rem 1.25rem;
-  border-radius: var(--radius-full);
-  font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.02em;
-  transition: all var(--transition-base);
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
   position: relative;
   overflow: hidden;
 }

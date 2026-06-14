@@ -1,16 +1,12 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import bcrypt from "bcrypt";
-import Database from "better-sqlite3";
-import path from "path";
-
-// Direct database access for auth (bypasses Prisma adapter issues)
-function getDb() {
-  return new Database(path.join(process.cwd(), "dev.db"));
-}
+import { prisma } from "@/lib/prisma";
 
 export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma) as NextAuthOptions["adapter"],
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
@@ -20,47 +16,37 @@ export const authOptions: NextAuthOptions = {
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null;
-        
-        try {
-          const db = getDb();
-          const user = db.prepare("SELECT * FROM User WHERE email = ?").get(credentials.email) as any;
-          db.close();
-          
-          if (!user || !user.password) return null;
-          
-          const isValid = await bcrypt.compare(credentials.password, user.password);
-          if (!isValid) return null;
-          
-          return { id: user.id, email: user.email, name: user.name };
-        } catch (error) {
-          console.error("Auth error:", error);
-          return null;
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("Please enter your email and password");
         }
-      }
-    })
+
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email },
+        });
+
+        if (!user) {
+          throw new Error("No account found with this email");
+        }
+
+        if (!user.password) {
+          // User signed up via Google — has no password set
+          throw new Error("This account uses Google Sign-In. Please sign in with Google.");
+        }
+
+        const isValid = await bcrypt.compare(credentials.password, user.password);
+        if (!isValid) {
+          throw new Error("Wrong password");
+        }
+
+        return { id: user.id, email: user.email, name: user.name };
+      },
+    }),
   ],
   session: { strategy: "jwt" },
   callbacks: {
-    async signIn({ user, account }) {
-      if (account?.provider === "google" && user.email) {
-        try {
-          const db = getDb();
-          const existingUser = db.prepare("SELECT * FROM User WHERE email = ?").get(user.email) as any;
-          if (!existingUser) {
-            const id = 'g_' + Date.now().toString(36);
-            db.prepare("INSERT INTO User (id, name, email, createdAt, updatedAt) VALUES (?, ?, ?, datetime('now'), datetime('now'))").run(id, user.name, user.email);
-          }
-          db.close();
-        } catch (error) {
-          console.error("Google signIn callback error:", error);
-        }
-      }
-      return true;
-    },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
@@ -73,7 +59,7 @@ export const authOptions: NextAuthOptions = {
         session.user.id = token.id;
       }
       return session;
-    }
+    },
   },
   pages: { signIn: "/login" },
   secret: process.env.NEXTAUTH_SECRET,
