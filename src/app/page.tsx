@@ -8,9 +8,11 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import { products } from "@/data/products";
 
+import { Suspense } from "react";
+
 const CATEGORIES = ["All", "Electronics", "Fashion", "Beauty", "Accessories"];
 
-export default function Home() {
+function HomeContent() {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("search")?.toLowerCase() || "";
   
@@ -115,5 +117,13 @@ export default function Home() {
         </div>
       </section>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div style={{ padding: "5rem", textAlign: "center", color: "var(--text-primary)" }}>Loading LuxeShop...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }

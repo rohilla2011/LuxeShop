@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     }
 
     // Payment is successful, create order in DB
-    const userId = session.user.id as string;
+    const userId = (session.user as any).id as string;
     
     const newOrder = await prisma.order.create({
       data: {

@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid order data or missing address" }, { status: 400 });
     }
 
-    const userId = session.user.id as string;
+    const userId = (session.user as any).id as string;
     
     // Create COD order in DB
     const newOrder = await prisma.order.create({
